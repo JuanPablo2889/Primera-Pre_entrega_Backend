@@ -29,8 +29,20 @@ class ProductManager {
 
     getProductsById = async (Id) => {
         let products = await this.readProducts();
-        let productById = products.find((prod) => prod.id === id);
+        let productById = products.find((prod) => prod.id === Id);
+        if (!productById) return "Producto No Encontrado";
         return productById;
+    };
+
+    deleteProducts = async (id) => {
+        let products = await this.readProducts();
+        let existProducts = products.some((prod) => prod.id === id);
+        if (existProducts) {
+            let filterProducts = products.filter((prod) => prod.id != id);
+            await this.writeProducts(filterProducts);
+            return "Producto Eliminado";
+        }
+        return "Producto a Eliminar Inexistente";
     };
 }
 

@@ -22,6 +22,11 @@ app.post("/products", async (req, res) => {
     res.send(await product.addProducts(newProduct));
 });
 
+app.delete("/products/:id", async (req, res) => {
+    let id = req.params.id;
+    res.send(await product.deleteProducts(id));
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor Express Puerto ${PORT}`);
 });
