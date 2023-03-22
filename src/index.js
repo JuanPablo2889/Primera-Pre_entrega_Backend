@@ -22,6 +22,12 @@ app.post("/products", async (req, res) => {
     res.send(await product.addProducts(newProduct));
 });
 
+app.put("/products/:id", async (req, res) => {
+    let id = req.params.id;
+    let updateProduct = req.body;
+    res.send(await product.updateProducts(id, updateProduct));
+});
+
 app.delete("/products/:id", async (req, res) => {
     let id = req.params.id;
     res.send(await product.deleteProducts(id));
