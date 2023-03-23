@@ -44,7 +44,7 @@ class CartManager {
         if (!cartById) return "Producto No Encontrado";
         let cartsALL = await this.readCarts();
         let cartfilter = cartsALL.filter((prod) => prod.id != productId);
-        let cartsConcat = [{ id: cartId, products: [{ id: productById.id, cantidad: 1 }], ...cartfilter }];
+        let cartsConcat = [{ id: cartId, products: [{ id: productById.id, cantidad: 1 }] }, ...cartfilter];
         await this.writeCarts(cartsConcat);
         return "Producto Agregado Al Carrito";
     };
